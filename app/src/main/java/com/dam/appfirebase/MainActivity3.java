@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -27,6 +28,8 @@ public class MainActivity3 extends AppCompatActivity {
     private EditText et_titre, et_note;
     private TextView tv_showNote;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private static final String KEY_TITRE = "titre";
+    private static final String KEY_NOTE = "note";
 
     /** Ajout de la reference a la collection comprenant toutes les  notes : NoteBook **/
 
@@ -65,8 +68,35 @@ public class MainActivity3 extends AppCompatActivity {
                         Log.d(TAG, e.toString());
                     }
                 });
+        et_titre.setText("");
+        et_note.setText("");
+    }
 
+    public void onDeleteNote(View view){
+        //Delete all
+        Log.i(TAG, "info : "+notbookRef.getId().toString());
+        //notbookRef.getFirestore();
 
+        notbookRef.document("YMkzEiyd5L3hv4eiqVZJ")
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(MainActivity3.this, "Toute la note est bien supprimée ! ", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity3.this, "Erreur lors de la suppression ! ", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    public void updateNote(View view){
+        Log.i(TAG, "info : "+notbookRef.getId().toString());
+        notbookRef.document().update(KEY_NOTE, et_note.getText().toString());
     }
 
     @Override

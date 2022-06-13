@@ -38,27 +38,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#4CAF50"
                 android:onClick="addNote"
-                android:text="ENREGISTRER" />
+                android:text="ADD" />
 
             <Button
                 android:id="@+id/btn_load"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#0086F1"
                 android:onClick="loadNotes"
-                android:text="AFFICHER" />
+                android:text="SHOW" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_delete3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:onClick="onDeleteNote"
+                android:text="DELETE ALL" />
+
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#D042E8"
+            android:backgroundTint="#11D519"
             android:fillViewport="true">
 
             <TextView
                 android:id="@+id/tv_showNote"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="#F9E1FD"
+                android:textColor="#630673" />
         </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
